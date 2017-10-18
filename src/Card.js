@@ -7,12 +7,15 @@ import flow from 'lodash/flow';
 
 const style = {
 	border: '1px solid gray',
+	height: '300px',
   flex: 1,
   flexBasis: '30%',
 	padding: '1rem 1rem',
 	marginBottom: '.5rem',
 	backgroundColor: 'white',
 	cursor: 'move',
+	textAlign: 'center',
+	margin: '10px'
 }
 /**
  * Implements the drag source contract.
@@ -93,6 +96,8 @@ class Card extends Component {
   render() {
     const {
 			name,
+			address,
+			rooms,
 			isDragging,
 			connectDragSource,
 			connectDropTarget,
@@ -101,7 +106,9 @@ class Card extends Component {
 
     return connectDragSource(connectDropTarget(
       <div style={{ ...style, opacity }}>
-        {name}
+        <h2>{name}</h2>
+				<h3>{address}</h3>
+				<p>{rooms}</p>
       </div>
     ));
   }

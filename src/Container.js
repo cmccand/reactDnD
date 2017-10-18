@@ -12,15 +12,21 @@ class Container extends Component {
     waypoints: [
       {
         id: 0,
-        name: 'Home'
+        name: 'Home',
+        address: '101 Homestead Way',
+        rooms: 5
       },
       {
         id: 1,
-        name: 'Storage'
+        name: 'Storage',
+        address: '202 Storage Drive',
+        rooms: 1
       },
       {
         id: 2,
-        name: 'Neverland'
+        name: 'New Home',
+        address: '303 Destination Drive',
+        rooms: 4
       }
     ]
   }
@@ -38,19 +44,37 @@ class Container extends Component {
 		)
   }
 
+  addWaypoint = () => {
+    const newWaypoint = {
+      name: 'new waypoint',
+      address: 'new address',
+      rooms: 0
+    };
+    const wp = [...this.state.waypoints];
+    wp.splice(1, 0, newWaypoint);
+    this.setState({
+      waypoints: wp
+    })
+  }
+
   render() {
     const { waypoints } = this.state;
 
     return (
-      <div style={style}>
-        {waypoints.map((wp, i) => (
-          <Card
-            key={wp.id}
-            index={i}
-            name={wp.name}
-            moveWaypoint={this.moveWaypoint}
-          />
-        ))}
+      <div>
+        <div style={style}>
+          {waypoints.map((wp, i) => (
+            <Card
+              key={wp.id}
+              index={i}
+              name={wp.name}
+              address={wp.address}
+              rooms={wp.rooms}
+              moveWaypoint={this.moveWaypoint}
+            />
+          ))}
+        </div>
+        <button onClick={this.addWaypoint}>Add Waypoint</button>
       </div>
     )
   }
