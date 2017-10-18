@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import Container from './Container';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 
-export default class App extends Component {
+class App extends Component {
   render() {
     return (
-      <h1>Hello, world.</h1>
+      <Container />
     );
   }
 }
+
+export default DragDropContext(HTML5Backend)(App);
